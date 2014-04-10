@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
     logger.info("info")
   end
 
+  #test
   def help
   end
 end
