@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3130709932">
+  <component name="DataSourceManagerImpl" format="xml" hash="3844959695">
     <data-source source="LOCAL" name="MySQL - @localhost" uuid="bc62692a-9347-4a5c-99ca-398ae46c3111">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -11,6 +11,20 @@
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
       </driver-properties>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails sample_app: development" uuid="009f932d-5d25-4863-badc-8f26e5b22518">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/sample_development</jdbc-url>
+      <user-name>root</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails sample_app: test" uuid="988ca9f4-2307-4afd-945c-0d7f6ab8902d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/sample_test</jdbc-url>
+      <user-name>root</user-name>
       <libraries />
     </data-source>
   </component>

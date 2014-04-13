@@ -11,6 +11,8 @@
     <schema name="" catalog="myrails"/>
     <schema name="" catalog="mysql"/>
     <schema name="" catalog="performance_schema"/>
+    <schema name="" catalog="sample_development"/>
+    <schema name="" catalog="sample_test"/>
     <schema name="" catalog="test"/>
     <table name="admin_users" schema="" catalog="dynamic_store" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
@@ -2019,5 +2021,13 @@
       <column name="CURRENT_CONNECTIONS" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
       <column name="TOTAL_CONNECTIONS" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
     </table>
+  </data-source>
+  <data-source source="LOCAL" name="Rails sample_app: development" uuid="009f932d-5d25-4863-badc-8f26e5b22518">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails sample_app: test" uuid="988ca9f4-2307-4afd-945c-0d7f6ab8902d">
+    <database-info product="SQLite" version="3.7.6.3" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
   </data-source>
 </component>
