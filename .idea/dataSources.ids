@@ -2237,8 +2237,10 @@
       <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
       <column name="password_digest" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="remember_token" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <index name="index_users_on_email" unique="true" columns="email"/>
+      <index name="index_users_on_remember_token" unique="false" columns="remember_token"/>
     </table>
   </data-source>
   <data-source source="LOCAL" name="Rails sample_app: development" uuid="009f932d-5d25-4863-badc-8f26e5b22518">
