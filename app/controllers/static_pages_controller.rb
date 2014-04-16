@@ -4,6 +4,9 @@ class StaticPagesController < ApplicationController
    #  test only
    # user = User.new(name: 'dan', email: "mhartl@example.com")
    # user.save
+
+    user = User.find(1)
+    logger.info("the user " + user.name)
   end
 
   #test

@@ -8,6 +8,7 @@
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="dynamic_store"/>
     <schema name="" catalog="information_schema"/>
+    <schema name="" catalog="mobilibuy_development"/>
     <schema name="" catalog="myrails"/>
     <schema name="" catalog="mysql"/>
     <schema name="" catalog="performance_schema"/>
@@ -763,6 +764,210 @@
       <column name="SECURITY_TYPE" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
       <column name="CHARACTER_SET_CLIENT" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
       <column name="COLLATION_CONNECTION" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="active_admin_comments" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="resource_id" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="resource_type" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="author_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="author_type" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="body" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="namespace" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="index_active_admin_comments_on_author_type_and_author_id" unique="false" columns="author_type,author_id"/>
+      <index name="index_active_admin_comments_on_namespace" unique="false" columns="namespace"/>
+      <index name="index_admin_notes_on_resource_type_and_resource_id" unique="false" columns="resource_type,resource_id"/>
+    </table>
+    <table name="addresses" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="line_one" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="line_two" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="zip" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="notes" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="admin_users" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="encrypted_password" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="reset_password_token" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="reset_password_sent_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="remember_created_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="sign_in_count" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="current_sign_in_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="last_sign_in_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="current_sign_in_ip" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="last_sign_in_ip" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="uber_admin" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="index_admin_users_on_email" unique="true" columns="email"/>
+      <index name="index_admin_users_on_reset_password_token" unique="true" columns="reset_password_token"/>
+    </table>
+    <table name="admin_users_customers" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="admin_user_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="customer_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+    </table>
+    <table name="campaigns" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="customer_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="start_date" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="end_date" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="admin_mail" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="contacts" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="phone1" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="phone2" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="address_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="first_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="customers" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="logo_file_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="logo_content_type" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="logo_file_size" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logo_updated_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="email_logs" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="from" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="to" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="subject" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="body" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="campaign_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="orders" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="product_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="store_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="transaction_date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="status" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="admin_note" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="shipping_date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="quantity" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="buyer_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="recepient_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="gift" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="payment_status" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="payment_data" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="order_code" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="gift_note" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="product_media" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="product_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="media" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="media_file_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="media_content_type" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="media_file_size" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="media_updated_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="products" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="campaign_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="show_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="status" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="total_offered" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="purchase_limit" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="id_at_vendor" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="default_price" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7"/>
+      <column name="sale_price" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7"/>
+      <column name="currency" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="no_inventory_url" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="not_active_url" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="related_product_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="shipping_price" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="share_url" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="products_stores" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="store_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="product_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+    </table>
+    <table name="schema_migrations" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="version" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
+    </table>
+    <table name="sessions" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="session_id" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="data" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="index_sessions_on_session_id" unique="false" columns="session_id"/>
+      <index name="index_sessions_on_updated_at" unique="false" columns="updated_at"/>
+    </table>
+    <table name="store_products" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="store_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="product_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="stores" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="campaign_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="lat" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7"/>
+      <column name="long" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7"/>
+      <column name="location" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="start_date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="end_date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="user_messages" schema="" catalog="mobilibuy_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="subject" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="body" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="campaign_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="profiles" schema="" catalog="myrails" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -2031,7 +2236,9 @@
       <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="password_digest" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <index name="index_users_on_email" unique="true" columns="email"/>
     </table>
   </data-source>
   <data-source source="LOCAL" name="Rails sample_app: development" uuid="009f932d-5d25-4863-badc-8f26e5b22518">
