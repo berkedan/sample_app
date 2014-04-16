@@ -2021,6 +2021,18 @@
       <column name="CURRENT_CONNECTIONS" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
       <column name="TOTAL_CONNECTIONS" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
     </table>
+    <table name="schema_migrations" schema="" catalog="sample_development" type="TABLE">
+      <column name="version" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
+    </table>
+    <table name="users" schema="" catalog="sample_development" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
   </data-source>
   <data-source source="LOCAL" name="Rails sample_app: development" uuid="009f932d-5d25-4863-badc-8f26e5b22518">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
